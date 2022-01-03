@@ -1,6 +1,9 @@
 #ifndef IR_DECODER
 #define IR_DECODER
 
+#include "compiler_defs.h"
+#include "C8051F930_defs.h"
+
 #define IR_ZERO_CODE 	0x01F6E11E
 #define IR_ONE_CODE  	0x01F7D02E
 #define IR_TWO_CODE  	0x01F6D12E
@@ -28,6 +31,8 @@ typedef enum {
 	NINE,
 	ON_OFF
 }IR_KEY;
+
+sbit IR_pin = P0^2;
 
 void IR_edge_capture();
 void IR_timer_run();

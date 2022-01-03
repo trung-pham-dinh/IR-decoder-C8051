@@ -15,7 +15,14 @@ typedef enum {
 }State;
 
 void IR_edge_capture() {
-	is_edge = 1;
+	static unsigned char pre_state = 1;
+	if(pre_state == 1 && IR_pin == 0) {
+		pre_state = 0;
+		is_edge = 1;
+	}
+	else if(pre_state == 0 && IR_pin == 1){
+		pre_state = 1;
+	}
 }
 
 void IR_timer_run() {

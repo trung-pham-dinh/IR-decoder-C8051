@@ -8,12 +8,12 @@ const unsigned char high_reload = HIGH_RELOAD_0;
 
 void display_receive();
 
-void EXTI1_ISR() interrupt INTERRUPT_INT1 {
-	IR_edge_capture();
-}
+
 #pragma OT(1)
 void TIMER_ISR() interrupt INTERRUPT_TIMER0 { // 0.2ms interrupt
 	IR_timer_run();
+	IR_edge_capture();
+	
 	TL0 = low_reload;
   TH0 = high_reload;
 }
@@ -26,6 +26,7 @@ void main() {
 	while(1) {
 		IR_fsm_receive();
 		display_receive();
+		
 	}
 }
 

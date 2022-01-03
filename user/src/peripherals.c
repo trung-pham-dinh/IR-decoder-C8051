@@ -56,8 +56,8 @@ void Oscillator_Init()
 
 void Interrupts_Init()
 {
-    IT01CF    = 0x20;
-    IE        = 0x87;
+    IT01CF    = 0x00;
+    IE        = 0x82;
 }
 
 // Initialization function for device,
