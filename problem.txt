@@ -1,0 +1,19 @@
+Problem 1: subtract two 1-byte numbers
+unsigned char a = 20;
+unsigned char b = 200;
+
+if(a-b >= 70) {
+	// we expect it to branch here. Because it is a 1-byte value and equals 0x4C
+}
+else {
+	// in fact, it will branch here if we check "Enable ANSI integer promotion rule" box in Option for target -> C51
+	// the result of subtraction will be 0xFF4C, 2-byte value !!!!! -> negative -> a-b < 70
+}
+
+Problem 2: unreachable code
+
+if(i&0x0000FFFF == 0xD0EC) {
+	// we expect it to branch here, but the compiler understand that we are comparing 2 different constants -> condition is never true
+}
+
+We must write like this: if((i&0x0000FFFF) == 0xD0EC)
